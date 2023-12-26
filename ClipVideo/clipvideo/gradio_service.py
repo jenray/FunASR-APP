@@ -1,3 +1,5 @@
+import os
+import argparse
 import gradio as gr
 from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
@@ -5,6 +7,11 @@ from videoclipper import VideoClipper
 from video import Video
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    # If the option python ui.py --share is attached, it will be deployed to Gradio
+    parser.add_argument("--share", action="store_true", help="Deploy on Gradio for sharing", default=False)
+    args = parser.parse_args()
+    
     inference_pipeline = pipeline(
         task=Tasks.auto_speech_recognition,
         model='damo/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch',
@@ -147,4 +154,4 @@ if __name__ == "__main__":
                            outputs=[video_output, video_mess_output, video_srt_clip_output])
     
     # start gradio service in local
-    demo.queue(concurrency_count=3).launch()
+    demo.queue(concurrency_count=3).launch(share=args.share)
