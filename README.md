@@ -53,7 +53,7 @@ You can try ClipVideo in modelscope space: [link](https://modelscope.cn/studios/
 #### Use ClipVideo as Gradio Service
 You can establish your own ClipVideo service which is same as [Modelscope Space](https://modelscope.cn/studios/damo/funasr_app_clipvideo/summary) as follow:
 ```shell
-python clipvideo/gradio_service.py
+python clipvideo/gradio_service.py --share
 ```
 then visit ```localhost:7860``` you will get a Gradio service like below and you can use ClipVideo following the steps:
 <img src="ClipVideo/docs/images/show2.0.png"/>
